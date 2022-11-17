@@ -48,8 +48,8 @@ function tomarkdown(event:Event){
         <tr v-for="n in colnum"></tr>
       </thead>
       <tbody>
-        <tr v-for="x in colnum">
-          <td v-for="y in rownum" contenteditable='true' style="height:20px;width:100px"></td>
+        <tr v-for="x in rownum">
+          <td v-for="y in colnum" contenteditable='true' style="height:20px;width:100px"></td>
         </tr>
       </tbody>
     </table>
