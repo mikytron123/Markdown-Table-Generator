@@ -49,7 +49,7 @@ function tomarkdown(event:Event){
       </thead>
       <tbody>
         <tr v-for="x in rownum">
-          <td v-for="y in colnum" contenteditable='true' style="height:20px;width:100px"></td>
+          <td v-for="y in colnum" contenteditable='true'></td>
         </tr>
       </tbody>
     </table>
@@ -65,5 +65,9 @@ function tomarkdown(event:Event){
 </template>
 
 <style scoped>
+td{
+  height: 20px;
+  width: 100px;
+}
 
 </style>
