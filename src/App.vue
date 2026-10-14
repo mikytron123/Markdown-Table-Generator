@@ -9,20 +9,20 @@ const table:Ref<HTMLTableElement | null> = ref(null);
 const output = ref("") 
 
 
-function tomarkdown(event:Event){
-  let data = Array.from(table.value?.rows as HTMLCollection).filter(x=>x.hasChildNodes()).map(y=>Array.from(y.children).map(z=>(z as HTMLTableCellElement).innerText))
-  let result = ""
-  for (let i = 0; i < data.length+2; i++) {
-    if (i==0) {
-      result = result + "| ".repeat(data[0].length) + "|\n";
-      continue;
-    }
-    if (i==1){
-      result = result + "|:----:".repeat(data[0].length) + "|\n";
-      continue;
-    }
-    result += "| " +  data[(i-2)].join(" | ") + " |\n"
-    
+function tomarkdown(){
+  const data = Array.from(table.value?.rows ?? [])
+    .filter(row => row.hasChildNodes())
+    .map(row => Array.from(row.cells).map(cell => cell.innerText))
+  const firstRow = data[0]
+  if (!firstRow) {
+    output.value = ""
+    return
+  }
+
+  let result = "| ".repeat(firstRow.length) + "|\n"
+  result += "|:----:".repeat(firstRow.length) + "|\n"
+  for (const row of data) {
+    result += "| " + row.join(" | ") + " |\n"
   }
   output.value = result;
 
